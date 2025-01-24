@@ -1,4 +1,5 @@
 import { Layout, Menu } from "antd";
+import SideBarRoutesGenerator from "../../Utils/SideBarRoutesGenerator";
 
 const { Sider } = Layout;
 
@@ -8,6 +9,20 @@ const userRole = {
 };
 
 const Sidebar = () => {
+  let sidebarItems;
+
+  switch (role) {
+    case userRole.ADMIN:
+      sidebarItems = SideBarRoutesGenerator({});
+      break;
+    case userRole.USER:
+      sidebarItems = SideBarRoutesGenerator({});
+      break;
+
+    default:
+      break;
+  }
+
   return (
     <Sider
       breakpoint="lg"
@@ -25,7 +40,12 @@ const Sidebar = () => {
       >
         <h1>PH Uni</h1>
       </div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={[]} />
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={["4"]}
+        items={sidebarItems}
+      />
     </Sider>
   );
 };
